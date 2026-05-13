@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+}
+/* .flex-container {
+   display: flex;
+   justify-content: space-between;
+   flex-flow: row wrap;
+   background-color: gray;
+}
+
+.flex-item {
+    /* flex-grow: 1; -> o item pode crescer para ocupar o espaço disponível
+    flex-shrink: 1; -> o item pode encolher para caber no espaço disponível
+    flex-basis: 320px; -> o tamanho inicial do item 
+    flex: 1 1 320px;
+    height: 200px;
+    background-color: lightblue;
+} */
+body {
+    font-size: 24px;
+}
+
+.two-columns {
+    display: flex;
+}
+
+.two-columns .col {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    margin: 15px;
+    padding: 30px;
+}
+
+.gallery {
+    flex-flow: row wrap;
+    display: flex;
+}
+.gallery .img {
+    flex: 1 0 20%;
+    height: 50px;
+    background-color: yellow;
+    margin: 15px;
+}
