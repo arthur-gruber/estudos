@@ -11,12 +11,11 @@
 // 11 - (259 % 11) = 11 - 6 = 5 -> segundo digito
 
 
-function ValidarCPF(cpf) {
-    this.cpf = cpf;
+function ValidarCPF(cpfEnviado) {
     Object.defineProperty(this, 'cpfLimpo', {
         enumerable: true,
         get: function () {
-            return this.cpf.replace(/\D+/g, '');
+            return cpfEnviado.replace(/\D+/g, '');
         }
     });
 };
@@ -31,25 +30,32 @@ ValidarCPF.prototype.validar = function () {
     const digito2 = this.criaDigito(cpfParcial + digito1);
 
     const novoCpf = cpfParcial + digito1 + digito2;
-    return true;
+    return novoCpf === this.cpfLimpo;
 };
 
 ValidarCPF.prototype.criaDigito = function (cpfParcial) {
     const cpfArray = Array.from(cpfParcial);
     let regressivo = cpfArray.length + 1;
+
     const total = cpfArray.reduce((ac, val) => {
         ac += (regressivo * Number(val));
         regressivo--;
         return ac;
     }, 0);
+    
     const digito = 11 - (total % 11);
     return digito > 9 ? '0' : String(digito);
 };
 
-validarCPF.prototype.isSequencia = function () {
-    return this.cpfLimpo[0].repeat(this.cpfLimpo.length);
+ValidarCPF.prototype.isSequencia = function () {
+    const sequencia = this.cpfLimpo[0].repeat(this.cpfLimpo.length);
     return sequencia === this.cpfLimpo;
 }
 
 const cpf = new ValidarCPF('351.493.470-35');
-console.log(cpf.validar());
+
+if (cpf.validar()) {
+    console.log('CPF válido');
+} else {
+    console.log('CPF inválido');
+}
