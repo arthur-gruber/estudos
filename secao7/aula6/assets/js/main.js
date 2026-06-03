@@ -1,7 +1,6 @@
 class ValidaFormulario {
     constructor() {
         this.formulario = document.querySelector('.formulario');
-
         this.eventos();
     }
 
@@ -37,17 +36,19 @@ class ValidaFormulario {
             valid = false;
             this.criaErro(senha, 'A senha precisa conter entre 6 e 12 caracteres');
         }
+
+        return valid;
     }
 
     fieldIsValid() {
         let valid = true;
 
-        for (let errorText of this.formulario.QuerySelectorAll('.error-text')) {
+        for (let errorText of this.formulario.querySelectorAll('.error-text')) {
             errorText.remove();
         }
 
         for (let campo of this.formulario.querySelectorAll('.validar')) {
-            const label = campo.previousElementSiebling.innerText;
+            const label = campo.previousElementSibling.innerText;
 
             if (!campo.value) {
                 this.criaErro(campo, `O campo ${label} nao pode estar vazio`);
@@ -57,18 +58,18 @@ class ValidaFormulario {
             if (campo.classList.contains('cpf')) {
                 if (!this.validaCPF(campo)) valid = false;
             }
-            if (campo.classList.contains('usauario')) {
+            if (campo.classList.contains('usuario')) {
                 if (!this.validaUsuario(campo)) valid = false;
             }
         }
         return valid;
     }
 
-    validaUsuario() {
+    validaUsuario(campo) {
         const usuario = campo.value;
         let valid = true;
 
-        if (usuario.lenght < 3 || usuario.lenght > 12) {
+        if (usuario.length < 3 || usuario.length > 12) {
             this.criaErro(campo, 'Usuario precisa ter entre 3 e 12 caracteres');
             valid = false;
         }
@@ -84,7 +85,7 @@ class ValidaFormulario {
     validaCPF(campo) {
         const cpf = new ValidaCPF(campo.value);
 
-        if (!cpf.valid()) {
+        if (!cpf.valida()) {
             this.criaErro(campo, 'cpf invalido')
             return false;
         }

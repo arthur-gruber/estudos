@@ -46,9 +46,9 @@ class ValidaCPF {
 
 }
 
-const validaCpf = new ValidaCPF('872.804.630-70');
-if (validaCpf.valida()) {
-  console.log('CPF válido');
-} else {
-  console.log('CPF inválido');
-}
+// const validaCpf = new ValidaCPF('872.804.630-70');
+// if (validaCpf.valida()) {
+//   console.log('CPF válido');
+// } else {
+//   console.log('CPF inválido');
+// }
