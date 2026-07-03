@@ -8,9 +8,10 @@ exports.outroMiddleware = (req, res, next) => {
 };
 
 exports.checkCsrfError = (err ,req, res, next) => {
-    if(err && 'EBADCSRFTOKEN' === err.code){
-        return res.render('includes/erro');
+    if(err){
+        return res.render('erro');
     }
+    next();
 };
 
 exports.csrfMiddleware = (req, res, next) => {
